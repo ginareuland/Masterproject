@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def myround(x):
     if np.ceil(x) - x <= x - np.floor(x):
         return np.ceil(x)
@@ -13,10 +12,7 @@ def sgn(y):
     else:
         return 1
 
-
 def AllClosestPoints(G, x):
-
-
 
     H = np.linalg.inv(G)
     n = np.shape(H)[0]
@@ -38,21 +34,16 @@ def AllClosestPoints(G, x):
 
     while True:
         newdist = dist[k - 1] + y * y
-        if newdist < (1+a)*bestdist:                                   # <= ??
+        if newdist < (1+a)*bestdist:                                   # <= ?
             if k - 1 != 0:
-                for i in range(0, k - 1):                  #läuft 0 bis k-2 durch
+                for i in range(0, k - 1):                                     
                     e[k - 2][i] = e[k - 1][i] - y * H[k - 1][i]               # projektion auf layer eine dimension drunter
                 k = k - 1
                 dist[k - 1] = newdist
                 u[k - 1] = myround(e[k - 1][k - 1])
                 y = (e[k - 1][k - 1] - u[k - 1]) / H[k - 1][k - 1]
                 step[k - 1] = sgn(y)
-            else:
-                # if y == 0:         ## Teil braucht man für richtiges funktionieren von AllClosestPoints
-                 #   c = list(u)     ## für den Fall wo target vector ein integer vector ist
-                 #   U[0].append(c)  ## aber Teil unötig für voronoi relevant vectors?
-                 #else:
-                 #if newdist !=0:
+            else
                  c = list(u)
                  U[0].append(c)
                  bestdist = min(bestdist,newdist)
@@ -83,7 +74,6 @@ if __name__ == '__main__':
    s=[0, 0, 0, 0]
    H= [[20,0,0,0],[5,1,0,0],[2,-1,3,0],[2,3,4,1]]
    print(AllClosestPoints(H,s))
-   #for v in AllClosestPoints([[1,0,0,0],[2,1,0,0],[1,1,1,0],[0,0,0,10]], [0.5,0.5,0.5,0.5]):
-    #print(list(np.dot(v,np.linalg.inv([[1,0,0,0],[2,1,0,0],[1,1,1,0],[0,0,0,10]]))))
+
 
 
