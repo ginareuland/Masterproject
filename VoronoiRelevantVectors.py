@@ -34,5 +34,4 @@ def VoronoiRelevantVectors(H):
 if __name__ == '__main__':
   H= [[2,0,0,0,0],[0,2,0,0,0],[0,0,2,0,0],[0,0,0,2,0],[1,1,1,1,1]]
   print((VoronoiRelevantVectors(H)))
-  #print(np.dot(np.linalg.inv(np.matrix(H)),np.matrix(H)))
   print(len(VoronoiRelevantVectors(H)))
